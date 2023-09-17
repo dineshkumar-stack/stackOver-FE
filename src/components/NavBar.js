@@ -31,7 +31,7 @@ function NavBar() {
   const history = useHistory();
 
 
-  const apiUrl = 'https://student-dashboard-be.onrender.com/api/userdetail';
+  const apiUrl = 'https://stackoverclone-be.onrender.com/api/check-login';
 
   fetch(apiUrl, {
     method: 'GET',
@@ -44,10 +44,10 @@ function NavBar() {
       return response.json();
     })
     .then((data) => {
-      setUserData(data.userDetails);
-
+      setUserData([data.user]);
 
     })
+    
     .catch((error) => {
       console.error('Error fetching data:', error);
     });
@@ -91,7 +91,7 @@ function NavBar() {
         </Navbar.Brand >
         <Nav.Item>
           {userData.map((user, index) => (
-            <span key={user} className="nav-link-name"><ImUserCheck style={{ marginBottom: "2px" }} /> {user.name}</span>
+            <span key={user} className="nav-link-name"><ImUserCheck style={{ marginBottom: "2px" }} /> {user.username}</span>
           ))}
         </Nav.Item>
 
@@ -113,7 +113,7 @@ function NavBar() {
                 to="/Home"
                 onClick={() => updateExpanded(false)}
               >
-                <BiSolidDashboard style={{ marginBottom: "2px" }} /> Dashboard
+                <BiSolidDashboard style={{ marginBottom: "2px" }} /> Recent
               </Nav.Link>
             </Nav.Item>
 
@@ -123,7 +123,7 @@ function NavBar() {
                 to="/tasks"
                 onClick={() => updateExpanded(false)}
               >
-                <GrTasks style={{ color: "white", marginBottom: "2px" }} /> Task
+                <GrTasks style={{ color: "white", marginBottom: "2px" }} /> Ask
               </Nav.Link>
             </Nav.Item>
 

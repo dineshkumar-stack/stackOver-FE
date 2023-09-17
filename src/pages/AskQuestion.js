@@ -1,12 +1,11 @@
-import { Button, Modal, Form } from "react-bootstrap";
-import React, { useState, useEffect } from "react";
-import Accordion from "react-bootstrap/Accordion";
-import dateFormat from "dateformat";
+import { Button, Form, Container } from "react-bootstrap";
+import React, { useState, useRef } from "react";
+// import dateFormat from "dateformat";
 import NavBar from "../components/NavBar";
 import "../styles.css"
 
 
-const apiUrl = "https://student-dashboard-be.onrender.com/api";
+const apiUrl = "https://stackoverclone-be.onrender.com/api";
 const authToken = localStorage.getItem("authToken");
 
 const headers = {
@@ -15,164 +14,114 @@ const headers = {
 };
 
 function TaskPage() {
-  const [tasks, setTasks] = useState([]);
+  const [questionTitle, setQuestionTitle] = useState("");
+  const [tag, setTag] = useState("");
+  const [content, setContent] = useState("");
 
-  function source() {
-    fetch(`${apiUrl}/taskbarstatus`)
-      .then((response) => response.json())
-      .then((data) => setTasks(data))
-      .catch((error) => console.error("Error fetching tasks:", error));
-  }
 
-  useEffect(() => {
-    source();
-  }, []);
 
-  const [showModal, setShowModal] = useState(false);
-  const [taskTitle, setTaskTitle] = useState("");
-  const [FELink, setFELink] = useState("");
-  const [SNo, setSNo] = useState("");
-  const [BELink, setBELink] = useState("");
+  const newQuestionTitleRef = useRef(null);
+  const newContentRef = useRef(null);
+  const newTagRef = useRef(null);
 
-  const handleShowModal = () => setShowModal(true);
-  const handleCloseModal = () => {
-    setShowModal(false);
-    resetForm();
-  };
 
-  const handleSubmit = async () => {
+  
+
+
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      const response = await fetch(`${apiUrl}/taskbarstatus`, {
+      const response = await fetch(`${apiUrl}/question`, {
         method: "POST",
         headers: headers,
 
         body: JSON.stringify({
-          title: taskTitle,
-          SNo: SNo,
-          FrontEndLink: FELink,
-          BackEndLink: BELink,
+          title: questionTitle,
+          content: content,
+          tag: tag
         }),
       });
 
       if (response.ok) {
+        resetForm()
         console.log("Task submitted successfully");
-        source();
-        handleCloseModal();
         TaskPage();
+        alert('form submitted');
+
       } else {
         console.error("Error submitting task");
       }
     } catch (error) {
       console.error("Error submitting task:", error);
     }
+
+    function resetForm() {
+      setQuestionTitle('')
+      setTag('')
+      setContent('')
+    }
+
   };
 
-  const resetForm = () => {
-    setTaskTitle("");
-    setSNo("");
-    setFELink("");
-    setBELink("");
-  };
+
 
   return (
-    <div className="task-page container">
+    <Container>
       <NavBar />
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <td>
-              <h4 className="float-start">Task Page</h4>
-              <Button variant="primary float-end" onClick={handleShowModal}>
-                Task Submits
-              </Button>
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          {tasks.map((task, index) => (
-            <tr key={task.id}>
-              <td>
-                <Accordion
-                  className="task-submit-page"
-                  defaultActiveKey={["2"]}
-                  flush
-                >
-                  <Accordion.Item className="task-submit-page-item" eventKey="0">
-                    <Accordion.Header>{task.title}</Accordion.Header>
-                    <span>
-                      Submitted on: &#128338;{" "}
-                      {dateFormat(task.timeStamp, `hh:mm TT - mmmm dS yyyy`)}{" "}
-                      &#128197;
-                    </span>
-                    <Accordion.Body>
-                      <strong>Front End Link : </strong>
-                      <a href={task.FrontEndLink}>{task.FrontEndLink}</a>
-                      <br />
-                      <strong>Back End Link : </strong>
-                      <a href={task.BackEndLink}>{task.BackEndLink}</a>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div>
-        <Modal size="lg" show={showModal} onHide={handleCloseModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>Add Task</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form>
-              <Form.Group controlId="SNo">
-                <Form.Control
-                  type="Number"
-                  placeholder="S.NO"
-                  value={SNo}
-                  onChange={(e) => setSNo(e.target.value)}
-                />
-              </Form.Group>
+      <h1 className="mt-4">Ask a Question</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="questionTitle">
+          <Form.Label>Question Title</Form.Label>
+          <Form.Control
+            type="text"
+            id='inputNewTitle'
+            placeholder="Enter your question title"
+            onChange={(e) => setQuestionTitle(e.target.value)}
+            value={questionTitle}
+            ref={newQuestionTitleRef}
+          />
+        </Form.Group>
+        <Form.Group controlId="questionDescription">
+          <Form.Label>Question Description</Form.Label>
+          <Form.Control
+            as="textarea"
 
-              <Form.Group controlId="taskTitle">
-                <Form.Control
-                  type="text"
-                  placeholder="Enter task title"
-                  value={taskTitle}
-                  onChange={(e) => setTaskTitle(e.target.value)}
-                />
-              </Form.Group>
+            id='inputNewNoteDescription'
+            placeholder="Enter your question title"
+            onChange={(e) => setContent(e.target.value)}
+            value={content}
+            ref={newContentRef}
+          />
 
-              <Form.Group controlId="FELink">
-                <Form.Control
-                  type="text"
-                  placeholder="Front-end Source code"
-                  value={FELink}
-                  onChange={(e) => setFELink(e.target.value)}
-                />
-              </Form.Group>
+          <br /> <label className='form-label' htmlFor='selectImportance'>Select the Tag: </label>
+          <select
+            id='selectImportance'
+            onChange={(e) => setTag(e.target.value)}
+            ref={newTagRef}
 
-              <Form.Group controlId="BELink">
-                <Form.Control
-                  type="text"
-                  placeholder="Back-end Source code"
-                  value={BELink}
-                  onChange={(e) => setBELink(e.target.value)}
-                />
-              </Form.Group>
-            </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseModal}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleSubmit}>
-              Submit
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </div>
-    </div>
+          >
+            <option>--Tag--</option>
+            <option>Node</option>
+            <option>JavaScript</option>
+            <option>React</option>
+            <option>HTML</option>
+            <option>CSS</option>
+            <option>Angular</option>
+            <option>MongoBD</option>
+            <option>AWS</option>
+            <option>Java</option>
+            <option>Python</option>
+            <option>Other</option>
+          </select>
+        </Form.Group> <br />
+        <Button className='AskQbts' variant="primary" onClick={handleSubmit}>
+          Submit
+        </Button>
+      </Form>
+    </Container>
+
+
   );
 }
 
