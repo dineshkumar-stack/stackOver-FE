@@ -1,0 +1,364 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #001C30;
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  margin-top: 50px;
+}
+
+/* Content Styles */
+.content {
+  padding: 40px 20px;
+  display: flexbox;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.user-profile-container {
+  padding: 40px 20px;
+  display: flexbox;
+  justify-content: center;
+  background-color: #fff;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.form-label {
+  text-align: center;
+}
+
+/* Footer Styles */
+.footer {
+  text-align: center;
+  padding: 0.1px 0;
+  background-color: #ffffff80;
+  color: #000000;
+  /* position: fixed; */
+  bottom: 0;
+  width: 100%;
+}
+
+
+/* Additional Styling */
+.quick-links {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.link {
+  margin: 0 10px;
+  padding: 8px 16px;
+  background-color: #17a2b8;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.link:hover {
+  background-color: #138496;
+}
+
+/* Global Styles */
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.grid-stack {
+  /* background: rgba(0, 0, 0, 0.167); */
+  border-radius: 5px;
+  /* position:fixed; */
+}
+
+.grid-stack-item-content {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 5px;
+
+}
+
+.gs-4>.grid-stack-item[gs-x="1"] {
+  left: 25%
+}
+
+.gs-4>.grid-stack-item[gs-x="2"] {
+  left: 50%
+}
+
+.gs-4>.grid-stack-item[gs-x="3"] {
+  left: 75%
+}
+
+.gs-4>.grid-stack-item {
+  width: 25%
+}
+
+.gs-4>.grid-stack-item[gs-w="2"] {
+  width: 50%
+}
+
+.gs-4>.grid-stack-item[gs-w="3"] {
+  width: 75%
+}
+
+.gs-4>.grid-stack-item[gs-w="4"] {
+  width: 100%
+}
+
+thead {
+  position: sticky;
+  background-color: rgb(255, 255, 255);
+  top: 0;
+}
+
+/* Navbar Section  */
+/* --------- */
+.sticky {
+  background: rgb(148, 0, 0);
+  background: linear-gradient(0deg, #fffdfd44 0%, #ffffffc6 100%);
+  box-shadow: 0px 10px 10px 0px rgba(9, 5, 29, 0.171) !important;
+  backdrop-filter: blur(15px) !important;
+}
+
+.navbar {
+  position: fixed !important;
+  transition: all 0.3s ease-out 0s !important;
+  padding: 0.3rem 2rem !important;
+  font-size: 1.2rem !important;
+
+}
+
+.navbar-toggler {
+  position: relative !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.navbar-toggler span {
+  display: block !important;
+  background-color: #71acff !important;
+  height: 4px !important;
+  width: 27px !important;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+  transform: rotate(0deg) !important;
+  left: 0 !important;
+  opacity: 1 !important;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  outline: 0 !important;
+}
+
+.navbar-toggler span:nth-child(1),
+.navbar-toggler span:nth-child(3) {
+  transition: transform 0.35s ease-in-out !important;
+  transition: transform 0.35s ease-in-out !important;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(1) {
+  position: absolute !important;
+  left: 12px !important;
+  top: 10px !important;
+  transform: rotate(135deg) !important;
+  opacity: 0.9 !important;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(2) {
+  height: 12px !important;
+  visibility: hidden !important;
+  background-color: transparent !important;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(3) {
+  position: absolute !important;
+  left: 12px !important;
+  top: 10px !important;
+  transform: rotate(-135deg) !important;
+  opacity: 0.9 !important;
+}
+
+@media (max-width: 767px) {
+  .navbar {
+    padding: 0.1rem 0.5rem !important;
+    font-size: 1.4rem !important;
+    background: linear-gradient(0deg, #fffdfd 0%, #ffffff 100%) !important;
+  }
+
+  .navbar-nav .nav-item a::after {
+    display: none !important;
+  }
+}
+
+.navbar-brand {
+  color: rgb(252, 0, 0) !important;
+}
+
+.logo {
+  height: 2.8em !important;
+  width: 5em !important;
+}
+
+.navbar-nav .nav-link {
+  color: #000000 !important;
+  padding-right: 1rem !important;
+  padding-left: 1rem !important;
+
+}
+
+/* 
+.nav-link {
+  padding: 0.8rem 1rem !important;
+} */
+
+@media (max-width: 767px) {
+  .nav-link {
+    padding: 0.7rem 1rem !important;
+  }
+}
+
+.navbar-nav .nav-item {
+  position: relative;
+  margin: 0px 10px 0px 20px;}
+
+.navbar-nav .nav-item a {
+  font-weight: 400;
+  transition: all 0.3s ease-out 0s;
+  position: relative;
+  z-index: 1;
+}
+
+
+.container-lg {
+  text-align: center;
+}
+
+.bg {
+  background: url(../image/vackground-com-hDQ-dUjQN8E-unsplash.jpg) no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -3;
+}
+
+.bg:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  /* background: #000; */
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+
+.AddClassDate {
+  font-size: x-small;
+}
+
+/* .home {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+} */
+
+.grid-stack-item {
+  box-shadow: rgba(255, 255, 255, 0.1) -4px 9px 25px -6px;
+}
+
+.git-design {
+  background-color: #0000007b;
+  color: #fff;
+}
+
+.fork-btn-inner {
+  background-color: #000000;
+}
+
+.form-control {
+  padding: 10px;
+  margin: 10px;
+}
+
+.accordion-body {
+  padding: 5px 50px;
+  text-decoration: none;
+}
+
+.accordion-item span {
+
+  font-size: 12px;
+  padding-left: 50px;
+  color: #393939;
+}
+
+.task-submit-page .task-submit-page-item {
+  background-color: #f4f4f4ac;
+}
+
+.user-profile {
+  background-color: #fffdfd;
+}
+
+.prf2 {
+  padding: 10px;
+}
+
+.user-profile-container,
+h2 {
+  text-align: center;
+
+}
+
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  background: #fccb90;
+  width: 100%;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+
+@media (min-width: 768px) {
+  .gradient-form {
+    height: 100vh !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+  }
+}
+
+.warning {
+  color: #39393997;
+}
+
+.nav-link-user {
+  font-size: 15px;
+}
+
+.nav-link-name {
+  font: icon;
+  font-family: Helvetica;
+  font-weight: bold;
+}
