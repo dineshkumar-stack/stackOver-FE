@@ -362,3 +362,25 @@ h2 {
   font-family: Helvetica;
   font-weight: bold;
 }
+
+.bb{
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: #aeaeae;
+  padding: 5px;
+  font-size: .900em;
+  font-style: italic;
+}
+
+.username{
+  font-size: .1100em;
+}
+
+.card-subtitle{
+  padding-top: 10px;
+}
+
+.addCommnets{
+  font-size: 12px;
+
+}

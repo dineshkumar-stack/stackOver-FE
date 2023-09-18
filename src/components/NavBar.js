@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import logo from "../logo.svg";
 import Button from "react-bootstrap/Button";
 import { Link, useHistory } from "react-router-dom";
-import { FcLeave } from "react-icons/fc";
+// import { FcLeave } from "react-icons/fc";
 import { BiSolidDashboard, BiUserPin } from "react-icons/bi";
 import { AiFillGithub } from "react-icons/ai";
 import { GrTasks } from "react-icons/gr";
@@ -32,25 +32,31 @@ function NavBar() {
 
 
   const apiUrl = 'https://stackoverclone-be.onrender.com/api/check-login';
+  useEffect(() => {
 
-  fetch(apiUrl, {
-    method: 'GET',
-    headers: headers
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: headers
     })
-    .then((data) => {
-      setUserData([data.user]);
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log([data.user]);
+      })
+      .then((data) => {
+        setUserData([data.user]);
 
-    })
-    
-    .catch((error) => {
-      console.error('Error fetching data:', error);
-    });
+      })
+
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
 
 
   const handleLogout = async () => {
@@ -82,6 +88,7 @@ function NavBar() {
       expanded={expand}
       fixed="top"
       expand="md"
+      defaultActiveKey="/Home"
       className={navColour ? "sticky" : "navbar border-bottom"}
     >
 
@@ -106,7 +113,7 @@ function NavBar() {
           <span></span>
         </Navbar.Toggle>
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ms-auto" defaultActiveKey="#home">
+          <Nav className="ms-auto" defaultActiveKey="/home">
             <Nav.Item>
               <Nav.Link
                 as={Link}
@@ -137,7 +144,7 @@ function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
-            <Nav.Item>
+            {/* <Nav.Item>
               <Nav.Link
                 as={Link}
                 to="/attendance"
@@ -145,7 +152,7 @@ function NavBar() {
               >
                 <FcLeave style={{ marginBottom: "2px" }} /> Attendance
               </Nav.Link>
-            </Nav.Item>
+            </Nav.Item> */}
 
             <Nav.Item className="fork-btn">
               <Button

@@ -6,6 +6,7 @@ import "../styles.css";
 import Button from "react-bootstrap/Button";
 import Overlay from "react-bootstrap/Overlay";
 import Tooltip from "react-bootstrap/Tooltip";
+import Spinner from 'react-bootstrap/Spinner';
 // import api from '../api/api';
 
 function LoginPage() {
@@ -31,8 +32,6 @@ function LoginPage() {
       setLoading(false);
       history.push("/Home");
       login(token);
-      window.location.reload(true);
-
       console.log(token);
     } catch (error) {
       console.error("Login failed:", error);
@@ -103,6 +102,7 @@ function LoginPage() {
                   />
                 </div>
                 <div className="d-grid justify-content-center">
+
                   <button
                     type="submit"
                     size="lg"
@@ -111,7 +111,13 @@ function LoginPage() {
                     disabled={isLoading}
                     onClick={!isLoading ? handleLogin : null}
                   >
-                    {isLoading ? "Loading…" : "Log In"}
+                    {isLoading ? <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    /> : "Log In"}
                   </button>
                 </div>
               </form>

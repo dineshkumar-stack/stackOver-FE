@@ -62,8 +62,6 @@ function UserProfile() {
     }));
   };
 
-
-
   const handleSaveClick = async () => {
     try {
       const response = await fetch(`${apiUrl}/userdetail`, {
