@@ -3,7 +3,7 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import NavBar from "../components/NavBar";
 import "../styles.css";
 
-const apiUrl = "https://student-dashboard-be.onrender.com/api";
+const apiUrl = "https://stackoverclone-be.onrender.com/api";
 const authToken = localStorage.getItem("authToken");
 
 const headers = {

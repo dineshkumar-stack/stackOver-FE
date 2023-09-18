@@ -20,9 +20,7 @@ import {
 const apiUrl = "https://stackoverclone-be.onrender.com/api";
 
 function Home() {
-
   const [questionData, setQuestionData] = useState([]);
-
   useEffect(() => {
     fetch(`${apiUrl}/recent`, {
       method: "GET",
@@ -30,7 +28,7 @@ function Home() {
       .then((response) => response.json())
       .then((data) => {
         setQuestionData(data.recentData);
-        console.log(data.recentData);
+        // console.log(data.recentData);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
@@ -43,7 +41,7 @@ function Home() {
       <NavBar />
       <section className="vh-100">
         {questionData.map((user, index) => (
-          <MDBContainer className="py-2" style={{ maxWidth: "1000px" }}>
+          <MDBContainer className="py-2">
             <MDBRow className="justify-content-center">
               <MDBCol md="10" lg="8" xl="12">
                 <MDBCard>
@@ -51,7 +49,7 @@ function Home() {
                     <small className="username">{user.questionuser}</small>
                     <MDBCardTitle tag="h5">{user.title}</MDBCardTitle>
                     <div className="bb">
-                      <MDBRow className="flex-md-row-reverse">
+                      <MDBRow className="flex-md-row-reverse ">
                         <MDBCol>
                           <small>{dateFormat(user.timeStamp, "mmmm dS, yyyy, h:MM TT")}</small>
                         </MDBCol>
@@ -69,7 +67,7 @@ function Home() {
                     <MDBCardSubTitle >{user.content}</MDBCardSubTitle><br />
                     <div className="d-flex flex-start w-100">
                       <MDBCardImage
-                        className="rounded-circle shadow-1-strong me-3"
+                        className="rounded-circle shadow me-3"
                         src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(21).webp"
                         alt="avatar"
                         width="65"
@@ -91,11 +89,7 @@ function Home() {
             </MDBRow>
           </MDBContainer>
         ))}
-
       </section>
-
-
-
     </div>
   );
 }

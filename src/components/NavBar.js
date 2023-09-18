@@ -3,11 +3,10 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import logo from "../logo.svg";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import { Link, useHistory } from "react-router-dom";
-// import { FcLeave } from "react-icons/fc";
+import { FcLeave } from "react-icons/fc";
 import { BiSolidDashboard, BiUserPin } from "react-icons/bi";
-import { AiFillGithub } from "react-icons/ai";
 import { GrTasks } from "react-icons/gr";
 import { useAuth } from "../context/AuthContext";
 import { TbLogout } from "react-icons/tb";
@@ -127,7 +126,7 @@ function NavBar() {
             <Nav.Item>
               <Nav.Link
                 as={Link}
-                to="/tasks"
+                to="/ask"
                 onClick={() => updateExpanded(false)}
               >
                 <GrTasks style={{ color: "white", marginBottom: "2px" }} /> Ask
@@ -144,25 +143,16 @@ function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
-            {/* <Nav.Item>
+            <Nav.Item>
               <Nav.Link
                 as={Link}
-                to="/attendance"
+                to="/tag"
                 onClick={() => updateExpanded(false)}
               >
-                <FcLeave style={{ marginBottom: "2px" }} /> Attendance
+                <FcLeave style={{ marginBottom: "2px" }} /> Tag
               </Nav.Link>
-            </Nav.Item> */}
+            </Nav.Item> 
 
-            <Nav.Item className="fork-btn">
-              <Button
-                href="https://github.com/dineshkumar-stack"
-                target="_blank"
-                className="git-user fork-btn-inner btn btn-dark"
-              >
-                <AiFillGithub style={{ fontSize: "1.2em" }} />{" "}
-              </Button>
-            </Nav.Item>
             <Nav.Item className="fork-btn">
               <div id="navbarNav">
                 <ul className="navbar-nav ml-auto">

@@ -382,5 +382,12 @@ h2 {
 
 .addCommnets{
   font-size: 12px;
-
 }
+
+.ask-container{
+  background-color: #d3d3d359;
+  justify-items: center;
+}
+
+/* dropdown */
+
