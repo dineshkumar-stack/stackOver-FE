@@ -231,7 +231,8 @@ thead {
 
 .navbar-nav .nav-item {
   position: relative;
-  margin: 0px 10px 0px 20px;}
+  margin: 0px 10px 0px 20px;
+}
 
 .navbar-nav .nav-item a {
   font-weight: 400;
@@ -363,7 +364,7 @@ h2 {
   font-weight: bold;
 }
 
-.bb{
+.bb {
   border-bottom: solid;
   border-width: 1px;
   border-color: #aeaeae;
@@ -372,22 +373,29 @@ h2 {
   font-style: italic;
 }
 
-.username{
+.username {
   font-size: .1100em;
 }
 
-.card-subtitle{
+.card-subtitle {
   padding-top: 10px;
 }
 
-.addCommnets{
+.addCommnets {
   font-size: 12px;
 }
 
-.ask-container{
+.ask-container {
   background-color: #d3d3d359;
   justify-items: center;
 }
 
-/* dropdown */
+.recent-container {
+  margin: 10px;
+}
 
+.submit-Time {
+  font-size: 12px;
+}
+
+/* dropdown */

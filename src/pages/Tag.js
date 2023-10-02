@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import { Container, Row, Col, Card, Badge, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import QuestionModal from './QuestionModal'; // Import the QuestionModal component
+import QuestionView from './QuestionView'; // Import the QuestionModal component
 
 function Tag() {
   const [notes, setNotes] = useState([]);
@@ -195,7 +195,7 @@ function Tag() {
           </Col>
         ))}
       </Row>
-      <QuestionModal show={modalShow} onHide={() => setModalShow(false)} question={selectedQuestion} />
+      <QuestionView show={modalShow} onHide={() => setModalShow(false)} question={selectedQuestion} />
 
     </Container>
   )

@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "../pages/Home";
+import Register from "../pages/Register";
 import ask from "../pages/AskQuestion";
 import tag from "../pages/Tag";
 import UserDetailPage from "../pages/UserDetailPage"
@@ -13,6 +14,7 @@ function Content() {
     <div className="content">
       <Switch>
         <Route path="/home" exact component={Home} />
+        <Route path="/register" exact component={Register} />
         <Route path="/ask" component={ask} />
         <Route path="/userdetail" component={UserDetailPage} />
         <Route path="/tag" component={tag} />

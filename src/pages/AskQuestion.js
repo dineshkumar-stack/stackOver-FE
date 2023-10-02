@@ -18,16 +18,9 @@ function TaskPage() {
   const [tag, setTag] = useState("");
   const [content, setContent] = useState("");
 
-
-
   const newQuestionTitleRef = useRef(null);
   const newContentRef = useRef(null);
   const newTagRef = useRef(null);
-
-
-
-
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();

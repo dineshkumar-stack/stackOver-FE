@@ -43,9 +43,9 @@ function NavBar() {
         }
         return response.json();
       })
-      .then((data) => {
-        console.log([data.user]);
-      })
+      // .then((data) => {
+      //   console.log([data.user]);
+      // })
       .then((data) => {
         setUserData([data.user]);
 

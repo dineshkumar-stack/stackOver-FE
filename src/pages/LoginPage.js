@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 import "../styles.css";
+import {Col, Row} from "react-bootstrap";
+
 import Button from "react-bootstrap/Button";
 import Overlay from "react-bootstrap/Overlay";
 import Tooltip from "react-bootstrap/Tooltip";
@@ -40,6 +42,12 @@ function LoginPage() {
       setLoading(false);
     }
   };
+
+  const routeChange = () => {
+    let path = `/register`;
+    history.push(path);
+  }
+
 
   return (
     <div className="container mt-5">
@@ -101,24 +109,40 @@ function LoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                <div className="d-grid justify-content-center">
 
-                  <button
-                    type="submit"
-                    size="lg"
-                    className="btn btn-outline-primary"
-                    variant="outline-primary"
-                    disabled={isLoading}
-                    onClick={!isLoading ? handleLogin : null}
-                  >
-                    {isLoading ? <Spinner
-                      as="span"
-                      animation="border"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    /> : "Log In"}
-                  </button>
+                <div className="d-grid justify-content-center">
+                  <Row>
+                    <Col>
+                      <button
+                        type="submit"
+                        size="lg"
+                        className="btn btn-outline-primary"
+                        variant="outline-primary"
+                        disabled={isLoading}
+                        onClick={!isLoading ? handleLogin : null}
+                      >
+                        {isLoading ? <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        /> : "Log In"}
+                      </button>
+                    </Col>
+                    <Col>
+
+                      <button
+                        type="submit"
+                        size="lg"
+                        className="btn btn-outline-primary"
+                        variant="outline-primary"
+                        onClick={routeChange}
+                      >Register
+                      </button>
+                    </Col>
+
+                  </Row>
                 </div>
               </form>
             </div>
@@ -128,5 +152,6 @@ function LoginPage() {
     </div>
   );
 }
+<button type="submit">Register</button>
 
 export default LoginPage;
