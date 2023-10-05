@@ -44,54 +44,55 @@ function Home() {
       <NavBar />
       <div className="main-question container">
         {questionData.map((user, index) => (
+          <div>
+            <Card>
+              <Card.Header as="h5">
 
-          <Card>
-            <Card.Header as="h5">
+                <blockquote className="blockquote mb-0">
+                  <Row>
+                    <Col>
+                      <footer>
+                        <Col xs={10}>
+                          {user.questionuser} <cite className="submit-Time" title="Source Title">{dateFormat(user.timeStamp, "mmmm dS, yyyy, h:MM TT")}</cite>
+                          {" "} <Badge className="submit-Time" variant="dark">{user.tag}</Badge>
+                        </Col>
+                      </footer>
+                    </Col>
+                    <Col xs={2} className="col-md-auto">
+                      <Button className="submit-Time" variant="light" >
+                        View <span><Badge bg="secondary">{user.view}</Badge></span>
+                        <span className="visually-hidden">unread messages</span>
+                      </Button>
+                    </Col>
+                    <Col xs={2} className="col-md-auto">
+                      <Button className="submit-Time" variant="light">
+                        Vote <span><Badge bg="secondary">{user.vote}</Badge></span>
+                        <span className="visually-hidden">unread messages</span>
+                      </Button>
+                    </Col>
+                  </Row>
+                </blockquote>
+              </Card.Header>
+              <Card.Body>
+                <Card.Title>{user.title}</Card.Title>
+                <Card.Text>
+                  {user.content}
+                </Card.Text>
+                <Button variant="primary" onClick={() => handleViewQuestion(user)}>View</Button>
+              </Card.Body>
 
-              <blockquote className="blockquote mb-0">
-                <Row>
-                  <Col>
-                    <footer>
-                      <Col xs={10}>
-                        {user.questionuser} <cite className="submit-Time" title="Source Title">{dateFormat(user.timeStamp, "mmmm dS, yyyy, h:MM TT")}</cite>
-                        {" "} <Badge className="submit-Time" variant="dark">{user.tag}</Badge>
-                      </Col>
-                    </footer>
-                  </Col>
-                  <Col xs={2} className="col-md-auto">
-                    <Button className="submit-Time" variant="light" >
-                      View <span><Badge bg="secondary">{user.view}</Badge></span>
-                      <span className="visually-hidden">unread messages</span>
-                    </Button>
-                  </Col>
-                  <Col xs={2} className="col-md-auto">
-                    <Button className="submit-Time" variant="light">
-                      Vote <span><Badge bg="secondary">{user.vote}</Badge></span>
-                      <span className="visually-hidden">unread messages</span>
-                    </Button>
-                  </Col>
-                </Row>
-              </blockquote>
-            </Card.Header>
-            <Card.Body>
-              <Card.Title>{user.title}</Card.Title>
-              <Card.Text>
-                {user.content}
-              </Card.Text>
-              <Button variant="primary" onClick={() => handleViewQuestion(user)}>View</Button>
-            </Card.Body>
-
-            <Card.Footer className="text-muted">
-              <blockquote className="blockquote mb-0">
-                <p>
-                  {' '}
-                  {' '}
-                </p>
-                <footer className="blockquote-footer">
-                  {user.questionuser} <cite title="Source Title">{dateFormat(user.timeStamp, "mmmm dS, yyyy, h:MM TT")}</cite>
-                </footer>
-              </blockquote></Card.Footer>
-          </Card>
+              <Card.Footer className="text-muted">
+                <blockquote className="blockquote mb-0">
+                  <p>
+                    {' '}
+                    {' '}
+                  </p>
+                  <footer className="blockquote-footer">
+                    {user.questionuser} <cite title="Source Title">{dateFormat(user.timeStamp, "mmmm dS, yyyy, h:MM TT")}</cite>
+                  </footer>
+                </blockquote></Card.Footer>
+            </Card><br />
+          </div>
         ))}
       </div>
       <QuestionModal show={modalShow} onHide={() => setModalShow(false)} question={selectedQuestion} />
