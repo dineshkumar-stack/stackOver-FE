@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import logo from "../logo.svg";
+// import logo from "../logo.svg";
 // import Button from "react-bootstrap/Button";
 import { Link, useHistory } from "react-router-dom";
 import { FcLeave } from "react-icons/fc";
@@ -10,7 +10,7 @@ import { BiSolidDashboard, BiUserPin } from "react-icons/bi";
 import { GrTasks } from "react-icons/gr";
 import { useAuth } from "../context/AuthContext";
 import { TbLogout } from "react-icons/tb";
-import { ImUserCheck } from "react-icons/im";
+import { ImUserCheck, ImStackoverflow } from "react-icons/im";
 
 
 const authToken = localStorage.getItem("authToken");
@@ -93,7 +93,7 @@ function NavBar() {
 
       <Container>
         <Navbar.Brand href="/" className="d-flex">
-          <img src={logo} className="img-fluid logo" alt="brand" />
+        <ImStackoverflow style={{ marginBottom: "2px" }} />
         </Navbar.Brand >
         <Nav.Item>
           {userData.map((user, index) => (
