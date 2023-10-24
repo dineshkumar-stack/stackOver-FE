@@ -61,7 +61,7 @@ function QuestionModal({ show, onHide, question }) {
       show={show}
       onHide={onHide}
       size="lg"
-      dialogClassName="modal-120w"
+      dialogClassName="modal-120w form-control-sm"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
