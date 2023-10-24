@@ -1,41 +1,37 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../components/NavBar";
 import dateFormat from "dateformat";
-import { Badge, Button, Card, Col, Row } from 'react-bootstrap';
-import axios from 'axios';
-import '../../src/styles.css'
-import QuestionModal from './QuestionModal'; // Import the QuestionModal component
+import { Container, Row, Col, Card, Badge, Button } from "react-bootstrap";
+import axios from "axios";
+import "../../src/styles.css";
+import QuestionModal from "./QuestionModal"; // Import the QuestionModal component
 
 // const apiUrl = "https://stackoverclone-be.onrender.com/api";
-
 
 function Home() {
   const [questionData, setQuestionData] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [modalShow, setModalShow] = useState(false);
 
-
-
   const handleViewQuestion = (question) => {
     setSelectedQuestion(question);
     setModalShow(true);
   };
 
-  const fetchAllNotes = (id) => {
+  const fetchAllComments = (id) => {
     axios
-      .get('https://stackoverclone-be.onrender.com/api/comment/')
+      .get("https://stackoverclone-be.onrender.com/api/comment/")
       .then((response) => {
         return response;
       })
       .then((data) => {
         setQuestionData(data.data.recentData);
         console.log(data.data.recentData);
-      })
-  }
-
+      });
+  };
 
   useEffect(() => {
-    fetchAllNotes()
+    fetchAllComments();
   }, []);
 
   //////////////////////////////////////
@@ -45,57 +41,62 @@ function Home() {
       <div className="main-question container">
         {questionData.map((user, index) => (
           <div>
-            <Card>
-              <Card.Header as="h5">
-
-                <blockquote className="blockquote mb-0">
+            <Container className="mt-1">
+              <Card className="mb-2">
+                <Card.Body>
                   <Row>
-                    <Col>
-                      <footer>
-                        <Col xs={10}>
-                          {user.questionuser} <cite className="submit-Time" title="Source Title">{dateFormat(user.timeStamp, "mmmm dS, yyyy, h:MM TT")}</cite>
-                          {" "} <Badge className="submit-Time" variant="dark">{user.tag}</Badge>
-                        </Col>
-                      </footer>
+                    <Col md={10}>
+                      <div className="tags">
+                        <Badge variant="primary" className="mr-2">
+                          {user.tag}
+                        </Badge>
+                      </div>
+                      <Card.Title>{user.title}</Card.Title>
                     </Col>
-                    <Col xs={2} className="col-md-auto">
-                      <Button className="submit-Time" variant="light" >
-                        View <span><Badge bg="secondary">{user.view}</Badge></span>
-                        <span className="visually-hidden">unread messages</span>
-                      </Button>
-                    </Col>
-                    <Col xs={2} className="col-md-auto">
-                      <Button className="submit-Time" variant="light">
-                        Vote <span><Badge bg="secondary">{user.vote}</Badge></span>
-                        <span className="visually-hidden">unread messages</span>
+                    <Col md={2}>
+                      <Button
+                        variant="primary"
+                        onClick={() => handleViewQuestion(user)}
+                      >
+                        View
                       </Button>
                     </Col>
                   </Row>
-                </blockquote>
-              </Card.Header>
-              <Card.Body>
-                <Card.Title>{user.title}</Card.Title>
-                <Card.Text>
-                  {user.content}
-                </Card.Text>
-                <Button variant="primary" onClick={() => handleViewQuestion(user)}>View</Button>
-              </Card.Body>
-
-              <Card.Footer className="text-muted">
-                <blockquote className="blockquote mb-0">
-                  <p>
-                    {' '}
-                    {' '}
-                  </p>
-                  <footer className="blockquote-footer">
-                    {user.questionuser} <cite title="Source Title">{dateFormat(user.timeStamp, "mmmm dS, yyyy, h:MM TT")}</cite>
-                  </footer>
-                </blockquote></Card.Footer>
-            </Card><br />
+                  <hr />
+                  <Card.Text>{user.content}</Card.Text>
+                  <hr />
+                  <div className="user-info">
+                    <small className="text-muted">
+                      Asked by {user.questionuser}
+                    </small>
+                    <small className="text-muted ml-3">
+                      {" "}
+                      {dateFormat(user.timeStamp, "mmmm dS, yyyy, h:MM TT")}
+                    </small>
+                  </div>
+                  <div className="user-info">
+                    <small className="text-muted mr-8">
+                      Views: {user.view}
+                    </small>{" "}
+                    <small className="text-muted mr-2">
+                      Votes: {user.vote}
+                    </small>{" "}
+                    <small className="text-muted mr-2">
+                      Comments: {user.view}
+                    </small>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Container>
+            <br />
           </div>
         ))}
       </div>
-      <QuestionModal show={modalShow} onHide={() => setModalShow(false)} question={selectedQuestion} />
+      <QuestionModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        question={selectedQuestion}
+      />
     </div>
   );
 }
