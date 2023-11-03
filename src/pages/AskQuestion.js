@@ -3,6 +3,9 @@ import React, { useState, useRef } from "react";
 // import dateFormat from "dateformat";
 import NavBar from "../components/NavBar";
 import "../styles.css"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const apiUrl = "https://stackoverclone-be.onrender.com/api";
@@ -22,6 +25,7 @@ function TaskPage() {
   const newContentRef = useRef(null);
   const newTagRef = useRef(null);
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -38,10 +42,10 @@ function TaskPage() {
 
       if (response.ok) {
         resetForm()
-        console.log("Task submitted successfully");
+        toast.success('Question Submitted', {
+          position: toast.POSITION.TOP_RIGHT
+        });
         TaskPage();
-        alert('form submitted');
-
       } else {
         console.error("Error submitting task");
       }
@@ -65,7 +69,7 @@ function TaskPage() {
         <NavBar />
         <h1 className="mt-4">Ask a Question</h1>
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="questionTitle">
+          <Form.Group >
             <Form.Label>Question Title</Form.Label>
             <Form.Control
               type="text"
@@ -76,7 +80,7 @@ function TaskPage() {
               ref={newQuestionTitleRef}
             />
           </Form.Group>
-          <Form.Group controlId="questionDescription">
+          <Form.Group >
             <Form.Label>Question Description</Form.Label>
             <Form.Control
               as="textarea"
@@ -89,29 +93,42 @@ function TaskPage() {
             />
 
             <br /> <label className='form-label' htmlFor='selectImportance'>Select the Tag:</label>{" "}
-              <select
-                id='selectImportance'
-                onChange={(e) => setTag(e.target.value)}
-                ref={newTagRef}
-                className="select-dropdown"
-              >
-                <option>--Tag--</option>
-                <option>Node</option>
-                <option>JavaScript</option>
-                <option>React</option>
-                <option>HTML</option>
-                <option>CSS</option>
-                <option>Angular</option>
-                <option>MongoBD</option>
-                <option>AWS</option>
-                <option>Java</option>
-                <option>Python</option>
-                <option>Other</option>
-              </select>
+            <select
+              id='selectImportance'
+              onChange={(e) => setTag(e.target.value)}
+              ref={newTagRef}
+              className="select-dropdown"
+            >
+              <option>--Tag--</option>
+              <option>Node</option>
+              <option>JavaScript</option>
+              <option>React</option>
+              <option>HTML</option>
+              <option>CSS</option>
+              <option>Angular</option>
+              <option>MongoBD</option>
+              <option>AWS</option>
+              <option>Java</option>
+              <option>Python</option>
+              <option>Other</option>
+            </select>
           </Form.Group> <br />
           <Button className='AskQbts' variant="primary" onClick={handleSubmit}>
             Submit
           </Button>
+          <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+
         </Form><br />
       </Container>
     </div>

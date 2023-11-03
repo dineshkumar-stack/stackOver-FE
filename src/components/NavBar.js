@@ -6,7 +6,7 @@ import Nav from "react-bootstrap/Nav";
 // import Button from "react-bootstrap/Button";
 import { Link, useHistory } from "react-router-dom";
 import { FcLeave } from "react-icons/fc";
-import { BiSolidDashboard, BiUserPin } from "react-icons/bi";
+import { BiSolidDashboard } from "react-icons/bi";
 import { GrTasks } from "react-icons/gr";
 import { useAuth } from "../context/AuthContext";
 import { TbLogout } from "react-icons/tb";
@@ -55,7 +55,6 @@ function NavBar() {
         console.error('Error fetching data:', error);
       });
   }, []);
-
 
 
   const handleLogout = async () => {
@@ -133,7 +132,7 @@ function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
-            <Nav.Item>
+            {/* <Nav.Item>
               <Nav.Link
                 as={Link}
                 to="/userdetail"
@@ -141,7 +140,7 @@ function NavBar() {
               >
                 <BiUserPin style={{ marginBottom: "2px" }} /> User
               </Nav.Link>
-            </Nav.Item>
+            </Nav.Item> */}
 
             <Nav.Item>
               <Nav.Link

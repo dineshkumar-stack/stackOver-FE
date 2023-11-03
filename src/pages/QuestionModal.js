@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import dateFormat from "dateformat";
 import axios from "axios";
 import "../styles.css";
-import { Modal, Button, Row } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const authToken = localStorage.getItem("authToken");
 
@@ -23,7 +25,7 @@ function QuestionModal({ show, onHide, question }) {
       .then((response) => {
         return response;
       })
-      .then((data) => {});
+      .then((data) => { });
   };
 
   useEffect(() => {
@@ -46,6 +48,7 @@ function QuestionModal({ show, onHide, question }) {
         console.log(ID, "comments updated");
         setComment("");
         alert("Comments Added")
+        question()
       } else {
         console.error("Error submitting task");
       }
@@ -56,11 +59,20 @@ function QuestionModal({ show, onHide, question }) {
   if (!question) {
     return null; // Return null if question is not available
   }
+  const Msg = ({handleCommentSubmit }) => (
+    <div>
+      Lorem ipsum dolor
+      <button>Retry</button>
+      <button onClick={handleCommentSubmit}>Close</button>
+    </div>
+  )
+
   return (
     <Modal
       show={show}
       onHide={onHide}
       size="lg"
+      className="block"
       dialogClassName="modal-120w form-control-sm"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -80,44 +92,59 @@ function QuestionModal({ show, onHide, question }) {
           </small>
         </div>
         <hr />
-        <Row>
-          <textarea
+        <div class="title"
+        >
+          <h5>Comments</h5>
+          <div class="tag">{question.view}</div>
+        </div>
+        <div class="writing">
+          <textarea contenteditable="true"
+            required="true"
+            class="textarea"
+            autofocus spellcheck="true"
             id="inputNewNoteContent"
             value={comment}
             placeholder="type your comments..."
             onChange={(e) => setComment(e.target.value)}
             onClick={() => fetchAllNotes(question._id)}
-          ></textarea>
-        </Row>
-        <Button
-          variant="primary"
-          className="mt-1"
-          onClick={handleCommentSubmit}
-        >
-          Add Comment
-        </Button>
-      </Modal.Body>
-      {question.usercomments.map((comment) => (
-        <div className="comments-section mt-4">
-          <div className="comment">
-            <img
-              src="https://via.placeholder.com/30"
-              alt="User Avatar"
-              className="avatar mr-2"
-            />
-            <div>
-              <strong>{comment.usercomment}</strong>: {comment.comment}.
+          >
+          </textarea>
+          <div class="footer">
+
+            <div class="group-button">
+              <Button
+                class="btn primary"
+                variant="light"
+                className="mt-1"
+                onClick={handleCommentSubmit}
+              >Add Comments</Button>
             </div>
+            <button onClick={() => toast(<Msg />)}>Hello 😀</button>
+    <ToastContainer />
 
           </div>
-          <small className="text-muted ml-3">
-            {" "}
-            {dateFormat(comment.timeStamp, "mmmm dS, yyyy, h:MM TT")}
-          </small>
-          <hr/>
         </div>
-      ))}
+        {question.usercomments.map((comment) => (
 
+          <div class="comment">
+            <div class="user-banner">
+              <div class="user">
+                <div class="avatar avatarComments">
+                  {comment.usercomment.charAt(0)}{comment.usercomment.charAt(1)}
+                  <span class="stat green"></span>
+                </div>
+                <h5 class="avatarName card-text" >{comment.usercomment}</h5>
+              </div>
+            </div>
+            <div class="contentComments">
+              <p>{comment.comment}</p>
+            </div>
+            <div class="footer">
+              <span class="text-muted commentsDate">{dateFormat(comment.timeStamp, "mmmm dS, yyyy, h:MM TT")}</span>
+            </div>
+          </div>
+        ))}
+      </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onHide}>
           Close

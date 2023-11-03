@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import { useHistory } from "react-router-dom";
+import { Col, Row } from "react-bootstrap";
 
 
 
@@ -14,7 +15,10 @@ function Register() {
     const [alertMessage, setAlertMessage] = useState("");
     const [showAlert, setShowAlert] = useState(false);
 
-
+    const routeChange = () => {
+        let path = `/login`;
+        history.push(path);
+    }
 
     const handleRegister = async (event) => {
         event.preventDefault();
@@ -55,7 +59,7 @@ function Register() {
                                 </div>
                             )}
                             <form onSubmit={handleRegister}>
-                            <div className="mb-3">
+                                <div className="mb-3">
                                     <label htmlFor="email" className="form-label">
                                         User Name
                                     </label>
@@ -95,15 +99,29 @@ function Register() {
                                     />
                                 </div>
                                 <div className="d-grid justify-content-center">
+                                    <Row>
+                                        <Col>
+                                            <button
+                                                type="submit"
+                                                size="lg"
+                                                className="btn btn-outline-primary"
+                                                variant="outline-primary"
+                                            >Register
+                                            </button>
+                                        </Col>
+                                        <Col>
+                                            <button
+                                                type="submit"
+                                                onClick={routeChange}
+                                                size="lg"
+                                                className=" btn btn-outline-primary"
+                                                variant="outline-primary"
+                                            >Login
+                                            </button>
+                                        </Col>
+                                    </Row>
 
-                                    <button
-                                        type="submit"
-                                        size="lg"
-                                        className="btn btn-outline-primary"
-                                        variant="outline-primary"
-                                    >Register
 
-                                    </button>
                                 </div>
                             </form>
                         </div>

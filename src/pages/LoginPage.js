@@ -33,6 +33,7 @@ function LoginPage() {
       localStorage.setItem("authToken", token);
       setLoading(false);
       history.push("/Home");
+      window.location.reload();
       login(token);
       console.log(token);
     } catch (error) {
