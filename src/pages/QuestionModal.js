@@ -3,7 +3,6 @@ import dateFormat from "dateformat";
 import axios from "axios";
 import "../styles.css";
 import { Modal, Button } from "react-bootstrap";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const authToken = localStorage.getItem("authToken");
@@ -14,7 +13,6 @@ const headers = {
 };
 
 function QuestionModal({ show, onHide, question }) {
-  console.log(question);
   const [comment, setComment] = useState("");
   const [ID, setID] = useState("");
 
@@ -59,13 +57,6 @@ function QuestionModal({ show, onHide, question }) {
   if (!question) {
     return null; // Return null if question is not available
   }
-  const Msg = ({handleCommentSubmit }) => (
-    <div>
-      Lorem ipsum dolor
-      <button>Retry</button>
-      <button onClick={handleCommentSubmit}>Close</button>
-    </div>
-  )
 
   return (
     <Modal
@@ -119,9 +110,6 @@ function QuestionModal({ show, onHide, question }) {
                 onClick={handleCommentSubmit}
               >Add Comments</Button>
             </div>
-            <button onClick={() => toast(<Msg />)}>Hello 😀</button>
-    <ToastContainer />
-
           </div>
         </div>
         {question.usercomments.map((comment) => (
